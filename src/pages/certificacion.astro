@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Benefits from '../components/Benefits.astro';
+
+const levels = [
+  {
+    title: 'Nivel 1: Inclusión Educativa',
+    color: 'bg-tea-yellow',
+    description: 'Enfoque en la formación del profesorado, atención individualizada y protocolos de convivencia.',
+    criteria: [
+      'Profesorado con conocimiento sobre el TEA y necesidades específicas.',
+      'Ritmo y forma de hablar adaptados a las necesidades del alumno.',
+      'Tiempo suficiente de respuesta y entrega de trabajos.',
+      'Comprobación sistemática de la comprensión de la teoría.',
+      'Atención a necesidades concretas en clase y locales del centro.',
+      'Medidas de prevención de bullying por escrito, accesibles y claras.',
+      'Plan Disciplinario con normas de comportamiento explícitas.',
+      'Comunicación continua tutor/orientador con las familias.',
+      'Protocolo ante bullying basado en guías oficiales de orientación TEA.',
+      'Apoyo emocional adecuado y apoyo individualizado general.',
+      'Comunicación efectiva en todo el entorno educativo.',
+      'Alumnado informado y sensibilizado acerca del TEA.',
+      'Equipo de orientación especializado y activo.'
+    ]
+  },
+  {
+    title: 'Nivel 2: Accesibilidad Cognitiva',
+    color: 'bg-tea-green',
+    description: 'Incluye el Nivel 1 y añade mejoras críticas en el entorno físico y la señalética.',
+    criteria: [
+      'Cumplimiento íntegro de todos los requisitos del Nivel 1.',
+      'Ruido de fondo controlado (no supera los 35dB).',
+      'Uso de pictogramas para accesibilidad cognitiva.',
+      'Mapas, planos y directorios comprensibles en todo el centro.'
+    ]
+  },
+  {
+    title: 'Nivel 3: Optimización Sensorial',
+    color: 'bg-tea-blue',
+    description: 'Máximo estándar de confort ambiental y reducción de distractores sensoriales.',
+    criteria: [
+      'Iluminación acorde a la norma técnica UNE-EN 12464.1.',
+      'Temperatura ambiente agradable y regulada (RITE).',
+      'Colores de aula poco llamativos (evitando sobreestimulación).',
+      'Uso de estores para evitar distracciones y deslumbramientos.'
+    ]
+  }
+];
+---
+
+<Layout title="Niveles de Certificación - TEA Friendly ®">
+  <div class="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center">
+        <h2 class="text-base font-semibold text-tea-blue tracking-wide uppercase">Certificación</h2>
+        <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+          Niveles de Reconocimiento
+        </p>
+        <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+          Reconocemos el esfuerzo de los centros educativos en diferentes etapas de su camino hacia la plena inclusión.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-3">
+        {levels.map((level) => (
+          <div class="flex flex-col rounded-2xl shadow-lg overflow-hidden bg-white card-hover hover:shadow-glow-blue border border-gray-100">
+            <div class={`flex-shrink-0 h-48 w-full flex items-center justify-center bg-gradient-to-br ${level.color === 'bg-tea-yellow' ? 'from-yellow-300 to-tea-yellow' : level.color === 'bg-tea-green' ? 'from-green-300 to-tea-green' : 'from-blue-300 to-tea-blue'} text-white relative overflow-hidden group`}>
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                <!-- Badge/Level Icon -->
+                <div class="bg-white/20 p-4 rounded-full backdrop-blur-sm border-2 border-white/30 transform group-hover:scale-110 transition-transform duration-500">
+                     <span class="text-6xl font-bold drop-shadow-md">{level.title.split(' ')[1]}</span>
+                </div>
+            </div>
+            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                  {level.title}
+                </h3>
+                <p class="mt-3 text-base text-gray-500 leading-relaxed">
+                  {level.description}
+                </p>
+                <div class="my-4 border-t border-gray-100"></div>
+                <ul class="mt-4 space-y-3">
+                    {level.criteria.map(c => (
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-5 w-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                                <span class="text-tea-green text-xs font-bold">✓</span>
+                            </div>
+                            <span class="ml-3 text-sm text-gray-600">{c}</span>
+                        </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        
+          <Benefits />
+        
+          <div class="relative bg-gradient-to-r from-tea-yellow to-yellow-400 py-16 sm:py-24">
+        
+            <div class="absolute inset-0 overflow-hidden">
+                 <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white opacity-20 blur-3xl"></div>
+                 <div class="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-white opacity-20 blur-3xl"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-4">
+                    ¿Eres un centro educativo innovador?
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-800">
+                    Únete a nuestro programa <span class="font-bold">Early Adopter</span>. Sé de los primeros en obtener la certificación, recibe asesoramiento personalizado y ayúdanos a definir el estándar de calidad.
+                </p>
+                <div class="mt-10">
+                    <a href="/solicitar-early-adopter" class="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-full text-tea-yellow bg-gray-900 hover:bg-gray-800 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                        Solicitar acceso Early Adopter
+                        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+</Layout>

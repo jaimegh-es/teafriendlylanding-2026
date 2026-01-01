@@ -1,0 +1,49 @@
+---
+const benefits = [
+  {
+    title: 'Visibilidad en el Mapa',
+    description: 'Aparece en nuestro mapa oficial de centros certificados para que las familias te encuentren fácilmente.',
+    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+  },
+  {
+    title: 'Página Dedicada',
+    description: 'Tu centro tendrá una página propia en nuestro sitio, optimizada y posicionada para buscadores.',
+    icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+  },
+  {
+    title: 'Materiales & Branding',
+    description: 'Cartelería, distintivos y recursos publicitarios listos para usar en tu centro y redes sociales.',
+    icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z'
+  },
+  {
+    title: 'Certificado Verificable',
+    description: 'Sello digital con código de verificación único vinculado a nuestra base de datos oficial.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+  }
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-base text-tea-blue font-bold tracking-wide uppercase">Beneficios</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        ¿Por qué certificarse como TEA Friendly ®?
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {benefits.map((benefit) => (
+        <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 flex flex-col items-center text-center group">
+          <div class="mb-6 p-4 rounded-xl bg-blue-50 text-tea-blue group-hover:bg-tea-blue group-hover:text-white transition-colors duration-300">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={benefit.icon} />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">{benefit.title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

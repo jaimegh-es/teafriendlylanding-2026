@@ -1,0 +1,308 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Newsletter from "../components/Newsletter.astro";
+import Benefits from "../components/Benefits.astro";
+---
+
+<Layout
+    title="TEA Friendly ® - Sitio web oficial | Certificación para centros educativos"
+>
+    <!-- Hero Section -->
+
+    <section class="relative bg-white overflow-hidden">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div
+                class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-tea-yellow opacity-20 blur-3xl animate-float"
+            >
+            </div>
+            <div
+                class="absolute top-1/2 -left-24 w-72 h-72 rounded-full bg-tea-blue opacity-20 blur-3xl animate-float"
+                style="animation-delay: 2s;"
+            >
+            </div>
+            <div
+                class="absolute -bottom-24 right-1/4 w-80 h-80 rounded-full bg-tea-green opacity-20 blur-3xl animate-float"
+                style="animation-delay: 4s;"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div
+                class="relative z-10 pb-8 bg-transparent sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 pt-20 px-4 sm:px-6 lg:px-8"
+            >
+                <main
+                    class="mt-10 mx-auto max-w-7xl sm:mt-12 md:mt-16 lg:mt-20 xl:mt-28"
+                >
+                    <div class="sm:text-center lg:text-left animate-fade-in-up">
+                        <h1
+                            class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
+                        >
+                            <span class="block xl:inline"
+                                >Haciendo el mundo más</span
+                            >
+                            <span
+                                class="block text-transparent bg-clip-text bg-gradient-to-r from-tea-blue to-tea-green xl:inline drop-shadow-sm"
+                                >TEA Friendly ®</span
+                            >
+                        </h1>
+                        <p
+                            class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+                        >
+                            Certificación oficial para centros educativos y
+                            espacios que se adaptan, cuidan y atienden las
+                            necesidades de personas con autismo. Un sello de
+                            calidad y compromiso.
+                        </p>
+                        <div
+                            class="mt-8 sm:mt-10 sm:flex sm:justify-center lg:justify-start gap-4"
+                        >
+                            <div class="rounded-md shadow">
+                                <a
+                                    href="/certificacion"
+                                    class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-full text-white bg-tea-blue hover:bg-blue-500 hover:shadow-glow-blue transition-all duration-300 md:py-4 md:text-lg md:px-10 transform hover:-translate-y-1"
+                                >
+                                    Conoce la Certificación
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0">
+                                <a
+                                    href="/colabora"
+                                    class="w-full flex items-center justify-center px-8 py-3 border-2 border-tea-blue text-base font-bold rounded-full text-tea-blue bg-transparent hover:bg-blue-50 transition-all duration-300 md:py-4 md:text-lg md:px-10 transform hover:-translate-y-1"
+                                >
+                                    Colabora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div
+            class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-50 flex items-center justify-center overflow-hidden"
+        >
+            <!-- Hero Image -->
+            <img
+                class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full opacity-90 hover:opacity-100 transition-opacity duration-700"
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                alt="Niños aprendiendo en un entorno inclusivo"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent lg:via-white/20"
+            >
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16">
+                <h2
+                    class="text-base text-tea-green font-bold tracking-wide uppercase"
+                >
+                    Sobre Nosotros
+                </h2>
+                <p
+                    class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
+                >
+                    ¿Qué es TEA Friendly ®?
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Una iniciativa dedicada a identificar, certificar y promover
+                    espacios que implementan prácticas amigables para personas
+                    con Trastorno del Espectro Autista.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <dl
+                    class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10"
+                >
+                    <div
+                        class="relative group p-6 rounded-2xl hover:bg-gray-50 transition-colors duration-300"
+                    >
+                        <dt>
+                            <div
+                                class="absolute flex items-center justify-center h-14 w-14 rounded-xl bg-tea-green text-white shadow-lg group-hover:scale-110 transition-transform duration-300"
+                            >
+                                <svg
+                                    class="h-7 w-7"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <p
+                                class="ml-20 text-xl leading-6 font-bold text-gray-900"
+                            >
+                                Validación Profesional
+                            </p>
+                        </dt>
+                        <dd class="mt-4 ml-20 text-base text-gray-500">
+                            Criterios basados en evidencia científica y
+                            validados por profesionales del sector educativo y
+                            sanitario.
+                        </dd>
+                    </div>
+
+                    <div
+                        class="relative group p-6 rounded-2xl hover:bg-gray-50 transition-colors duration-300"
+                    >
+                        <dt>
+                            <div
+                                class="absolute flex items-center justify-center h-14 w-14 rounded-xl bg-tea-yellow text-white shadow-lg group-hover:scale-110 transition-transform duration-300"
+                            >
+                                <svg
+                                    class="h-7 w-7"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <p
+                                class="ml-20 text-xl leading-6 font-bold text-gray-900"
+                            >
+                                Comunidad Inclusiva
+                            </p>
+                        </dt>
+                        <dd class="mt-4 ml-20 text-base text-gray-500">
+                            Fomentamos entornos donde todos los estudiantes,
+                            independientemente de su neurotipo, puedan
+                            prosperar.
+                        </dd>
+                    </div>
+
+                    <div
+                        class="relative group p-6 rounded-2xl hover:bg-gray-50 transition-colors duration-300"
+                    >
+                        <dt>
+                            <div
+                                class="absolute flex items-center justify-center h-14 w-14 rounded-xl bg-tea-red text-white shadow-lg group-hover:scale-110 transition-transform duration-300"
+                            >
+                                <svg
+                                    class="h-7 w-7"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <p
+                                class="ml-20 text-xl leading-6 font-bold text-gray-900"
+                            >
+                                Impacto Real
+                            </p>
+                        </dt>
+                        <dd class="mt-4 ml-20 text-base text-gray-500">
+                            Mejoramos tangiblemente la calidad de vida y el
+                            aprendizaje de las personas con TEA en su día a día.
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+                </div>
+            </section>
+        
+            <Benefits />
+        
+            <div
+                class="relative bg-gradient-to-r from-tea-yellow to-yellow-400 py-16 sm:py-24"
+        
+    >
+        <div class="absolute inset-0 overflow-hidden">
+            <div
+                class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white opacity-20 blur-3xl"
+            >
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-white opacity-20 blur-3xl"
+            >
+            </div>
+        </div>
+        <div
+            class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        >
+            <h2
+                class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl mb-4"
+            >
+                ¿Eres un centro educativo innovador?
+            </h2>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-800">
+                Únete a nuestro programa <span class="font-bold"
+                    >Early Adopter</span
+                >. Sé de los primeros en obtener la certificación, recibe
+                asesoramiento personalizado y ayúdanos a definir el estándar de
+                calidad.
+            </p>
+            <div class="mt-10">
+                <a
+                    href="/solicitar-early-adopter"
+                    class="inline-flex items-center justify-center px-10 py-4 border border-transparent text-lg font-bold rounded-full text-tea-yellow bg-gray-900 hover:bg-gray-800 hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                    Solicitar acceso Early Adopter
+                    <svg
+                        class="ml-2 -mr-1 w-5 h-5"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        ><path
+                            fill-rule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path></svg
+                    >
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <Newsletter />
+
+    <!-- HeroCTA Section -->
+    <section
+        class="bg-gradient-to-r from-tea-blue to-blue-500 relative overflow-hidden"
+    >
+        <div class="absolute inset-0 opacity-10 pattern-dots"></div>
+        <div
+            class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-20 lg:px-8 lg:flex lg:items-center lg:justify-between relative z-10"
+        >
+            <h2
+                class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl"
+            >
+                <span class="block">¿Listo para unirte?</span>
+                <span class="block text-blue-100 mt-1"
+                    >Ayúdanos a construir un futuro más inclusivo.</span
+                >
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <div class="inline-flex rounded-full shadow-lg">
+                    <a
+                        href="/colabora"
+                        class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-full text-tea-blue bg-white hover:bg-gray-50 hover:scale-105 transition-transform duration-300"
+                    >
+                        Empieza a colaborar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

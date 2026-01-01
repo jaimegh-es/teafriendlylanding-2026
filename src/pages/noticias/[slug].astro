@@ -1,0 +1,261 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { XMLParser } from "fast-xml-parser";
+
+export async function getStaticPaths() {
+    const RSS_URL =
+        "https://teafriendly-blog.blogspot.com/feeds/posts/default?alt=rss";
+
+    try {
+        const response = await fetch(RSS_URL);
+        if (!response.ok) throw new Error("Failed to fetch RSS");
+
+        const text = await response.text();
+        const parser = new XMLParser({
+            ignoreAttributes: false,
+            attributeNamePrefix: "@_",
+        });
+        const feed = parser.parse(text);
+        const items = feed.rss?.channel?.item || [];
+        const rawPosts = Array.isArray(items) ? items : [items];
+
+        return rawPosts.map((item: any) => {
+            const urlParts = item.link.split("/");
+            const filename = urlParts[urlParts.length - 1];
+            const slug = filename.replace(".html", "");
+
+            let thumbnail = item["media:thumbnail"]?.["@_url"];
+            if (!thumbnail && item.description) {
+                const imgMatch = item.description.match(
+                    /<img[^>]+src="([^">]+)"/,
+                );
+                if (imgMatch) thumbnail = imgMatch[1];
+            }
+
+            // Clean up content slightly (removing some common Blogger junk if possible via string replacement, though CSS is safer)
+            let content = item.description;
+
+            return {
+                params: { slug },
+                props: {
+                    post: {
+                        title: item.title,
+                        content: content,
+                        pubDate: new Date(item.pubDate).toLocaleDateString(
+                            "es-ES",
+                            { year: "numeric", month: "long", day: "numeric" },
+                        ),
+                        thumbnail: thumbnail,
+                        author: item.author?.name || "TEA Friendly ®",
+                        originalLink: item.link,
+                        category: Array.isArray(item.category)
+                            ? item.category[0]
+                            : item.category || "Actualidad",
+                    },
+                },
+            };
+        });
+    } catch (e) {
+        console.error("Error fetching blog posts for static paths:", e);
+        return [];
+    }
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={`${post.title} - TEA Friendly ®`}>
+    <!-- Navigation Bar / Breadcrumbs -->
+    <div class="bg-white border-b border-gray-100 sticky top-16 z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                    <li>
+                        <a
+                            href="/"
+                            class="hover:text-tea-blue transition-colors"
+                            >Inicio</a>
+                    </li>
+                    <li>
+                        <svg
+                            class="h-4 w-4 text-gray-300"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"
+                            ></path>
+                        </svg>
+                    </li>
+                    <li>
+                        <a
+                            href="/noticias"
+                            class="hover:text-tea-blue transition-colors"
+                            >Noticias</a>
+                    </li>
+                    <li>
+                        <svg
+                            class="h-4 w-4 text-gray-300"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z"
+                            ></path>
+                        </svg>
+                    </li>
+                    <li
+                        class="truncate max-w-[200px] text-gray-900 font-medium"
+                        aria-current="page"
+                    >
+                        {post.title}
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <article class="min-h-screen bg-gray-50 pb-20">
+        <!-- Header Section with Overlay if Image Exists, or Simple Header -->
+        <header class="relative w-full bg-white pb-10">
+            {
+                post.thumbnail ? (
+                    <div class="relative h-[400px] w-full overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-900/40 z-10" />
+                        <img
+                            src={post.thumbnail}
+                            alt={post.title}
+                            class="absolute inset-0 w-full h-full object-cover blur-sm scale-105"
+                        />
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <img
+                                src={post.thumbnail}
+                                alt={post.title}
+                                class="h-[350px] w-auto object-contain rounded-lg shadow-2xl"
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <div class="h-24 bg-gradient-to-r from-tea-blue to-blue-500" />
+                )
+            }
+
+            <div
+                class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-30"
+            >
+                <div
+                    class="bg-white rounded-xl shadow-xl p-8 sm:p-12 text-center border border-gray-100"
+                >
+                    <span
+                        class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-blue-100 text-tea-blue mb-6"
+                    >
+                        {post.category}
+                    </span>
+                    <h1
+                        class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6"
+                    >
+                        {post.title}
+                    </h1>
+
+                    <div
+                        class="flex items-center justify-center space-x-6 text-sm text-gray-500 border-t border-gray-100 pt-6"
+                    >
+                        <div class="flex items-center">
+                            <svg
+                                class="mr-2 h-5 w-5 text-gray-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            {post.pubDate}
+                        </div>
+                        <div class="flex items-center">
+                            <svg
+                                class="mr-2 h-5 w-5 text-gray-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                ></path>
+                            </svg>
+                            {post.author}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+            <div
+                class="bg-white rounded-2xl shadow-sm p-8 sm:p-12 border border-gray-100"
+            >
+                <!-- Using Tailwind Typography plugin -->
+                <div
+                    class="prose prose-lg prose-blue max-w-none
+                    prose-img:rounded-xl prose-img:shadow-lg prose-img:mx-auto
+                    prose-headings:font-bold prose-headings:text-gray-900
+                    prose-a:text-tea-blue prose-a:no-underline hover:prose-a:underline
+                    prose-blockquote:border-l-4 prose-blockquote:border-tea-yellow prose-blockquote:bg-yellow-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:italic"
+                >
+                    <Fragment set:html={post.content} />
+                </div>
+            </div>
+
+            <!-- Share / Actions -->
+            <div class="mt-12 flex justify-center">
+                <a
+                    href={post.originalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tea-blue transition-all"
+                >
+                    <svg
+                        class="mr-3 h-5 w-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        ></path>
+                    </svg>
+                    Leer artículo original en Blogger
+                </a>
+            </div>
+        </main>
+    </article>
+</Layout>
+
+<style is:global>
+    /* Specific overrides for nasty Blogger HTML if needed */
+    .prose iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 0.75rem;
+    }
+    .prose div {
+        /* Reset some common blogger divs */
+        max-width: 100% !important;
+    }
+    .prose img {
+        height: auto !important;
+    }
+</style>
